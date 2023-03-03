@@ -3,6 +3,8 @@ package com.example.practice_3;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,54 +12,34 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.practice_3.databinding.FragmentLoginBinding;
 
 
 public class LoginFragment extends Fragment {
     public FragmentLoginBinding fragmentLoginBinding;
-    ProductsFragment productsFragment;
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-
-
     public LoginFragment() {
 
-        // Required empty public constructor
     }
-
-
     public static LoginFragment newInstance(String param1, String param2) {
         LoginFragment fragment = new LoginFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
-
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         new Bundle();
         fragmentLoginBinding = FragmentLoginBinding.inflate(inflater, container, false);
         buttonsBinding(new Bundle());
-
-
-
         return fragmentLoginBinding.getRoot();
 
-        /*return inflater.inflate(R.layout.fragment_login, container, false);*/
     }
 
     private void buttonsBinding(Bundle bundle) {
@@ -65,33 +47,31 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ProductsFragment productsFragment1 = new ProductsFragment();
-                /*Bundle bundle = new Bundle();
-                bundle.putString("tag", "lol");
-                loginFragment.setArguments(bundle);
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.fragment_container, loginFragment).commit();*/
+                String name = fragmentLoginBinding.editTextTextPersonName.getText().toString();
+                String phone = fragmentLoginBinding.editTextPhone.getText().toString();
                 Bundle bundle = new Bundle();
-                bundle.putString("tag", "lol");
-
+                bundle.putString("name", name);
+                bundle.putString("phone", phone);
                 productsFragment1.setArguments(bundle);
                 FragmentTransaction fragm = getFragmentManager().beginTransaction();
-
-
-
-
-
-
-
                 fragm.replace(R.id.fragment_container,  productsFragment1).commit();
-
-
-                /*FragmentTransaction ft = fragmentManager.beginTransaction();
-                LoginFragment catFragment = LoginFragment.newInstance("6", "Васька");
-                ft.replace(R.id.your_placeholder, catFragment);
-                ft.commit();*/
-
-
             }
         });
+
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String name = bundle.getString("name");
+            TextView editText1 = view.findViewById(R.id.editTextTextPersonName);
+            editText1.setText(name);
+            String phone = bundle.getString("phone");
+            TextView editText2 = view.findViewById(R.id.editTextPhone);
+            editText2.setText(phone);
+
+        }
+
     }
 }

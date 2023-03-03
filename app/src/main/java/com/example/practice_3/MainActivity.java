@@ -7,10 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
-
     LoginFragment loginFragment;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,9 +15,5 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragm = getSupportFragmentManager().beginTransaction();
         loginFragment = new LoginFragment();
         fragm.add(R.id.fragment_container, loginFragment).commit();
-
-
-
-
     }
 }
