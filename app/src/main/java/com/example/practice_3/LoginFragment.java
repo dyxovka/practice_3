@@ -1,8 +1,11 @@
 package com.example.practice_3;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import com.example.practice_3.databinding.FragmentLoginBinding;
 
 public class LoginFragment extends Fragment {
     public FragmentLoginBinding fragmentLoginBinding;
+    ProductsFragment productsFragment;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -20,6 +24,7 @@ public class LoginFragment extends Fragment {
 
 
     public LoginFragment() {
+
         // Required empty public constructor
     }
 
@@ -30,12 +35,15 @@ public class LoginFragment extends Fragment {
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
 
     @Override
@@ -44,6 +52,9 @@ public class LoginFragment extends Fragment {
         new Bundle();
         fragmentLoginBinding = FragmentLoginBinding.inflate(inflater, container, false);
         buttonsBinding(new Bundle());
+
+
+
         return fragmentLoginBinding.getRoot();
 
         /*return inflater.inflate(R.layout.fragment_login, container, false);*/
@@ -53,7 +64,18 @@ public class LoginFragment extends Fragment {
         fragmentLoginBinding.buttonGotovo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*bundle.putString();*/
+                FragmentTransaction fragm = getFragmentManager().beginTransaction();
+
+                productsFragment = new ProductsFragment();
+
+                bundle.putString("arg1", "спорт");
+                fragm.replace(R.id.fragment_container, productsFragment).commit();
+                /*FragmentTransaction ft = fragmentManager.beginTransaction();
+                LoginFragment catFragment = LoginFragment.newInstance("6", "Васька");
+                ft.replace(R.id.your_placeholder, catFragment);
+                ft.commit();*/
+
+
             }
         });
     }
