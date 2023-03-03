@@ -11,7 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.practice_3.databinding.FragmentProductsBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,12 +26,7 @@ public class ProductsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static String TAG = "tag";
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    FragmentProductsBinding fragmentProductsBinding;
 
     public ProductsFragment() {
         // Required empty public constructor
@@ -46,8 +44,7 @@ public class ProductsFragment extends Fragment {
     public static ProductsFragment newInstance(String param1, String param2) {
         ProductsFragment fragment = new ProductsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,11 +54,11 @@ public class ProductsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Toast toast = Toast.makeText(getContext(), "onCreate", Toast.LENGTH_LONG );
         toast.show();
+
         Log.d(TAG, "onCreate");
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+
+
     }
 
     @Override
@@ -75,9 +72,21 @@ public class ProductsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view =  inflater.inflate(R.layout.fragment_products, container, false);
         Log.d(TAG, "onCreateView");
         Toast toast = Toast.makeText(getContext(), "onCreateView", Toast.LENGTH_LONG );
         toast.show();
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String recieveInfo = bundle.getString("tag");
+            TextView editText = view.findViewById(R.id.textView5_for_name);
+            editText.setText(recieveInfo);
+
+        }
+
+
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_products, container, false);
     }
@@ -88,6 +97,7 @@ public class ProductsFragment extends Fragment {
         Log.d(TAG, "onViewCreated");
         Toast toast = Toast.makeText(getContext(), "onViewCreated", Toast.LENGTH_LONG );
         toast.show();
+
     }
 
     @Override
@@ -104,6 +114,7 @@ public class ProductsFragment extends Fragment {
         Log.d(TAG, "onStart");
         Toast toast = Toast.makeText(getContext(), "onStart", Toast.LENGTH_LONG );
         toast.show();
+
     }
 
     @Override

@@ -64,12 +64,27 @@ public class LoginFragment extends Fragment {
         fragmentLoginBinding.buttonGotovo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ProductsFragment productsFragment1 = new ProductsFragment();
+                /*Bundle bundle = new Bundle();
+                bundle.putString("tag", "lol");
+                loginFragment.setArguments(bundle);
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, loginFragment).commit();*/
+                Bundle bundle = new Bundle();
+                bundle.putString("tag", "lol");
+
+                productsFragment1.setArguments(bundle);
                 FragmentTransaction fragm = getFragmentManager().beginTransaction();
 
-                productsFragment = new ProductsFragment();
 
-                bundle.putString("arg1", "спорт");
-                fragm.replace(R.id.fragment_container, productsFragment).commit();
+
+
+
+
+
+                fragm.replace(R.id.fragment_container,  productsFragment1).commit();
+
+
                 /*FragmentTransaction ft = fragmentManager.beginTransaction();
                 LoginFragment catFragment = LoginFragment.newInstance("6", "Васька");
                 ft.replace(R.id.your_placeholder, catFragment);
