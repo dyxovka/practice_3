@@ -45,17 +45,13 @@ public class ProductsFragment2 extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast toast = Toast.makeText(getContext(), "onCreate", Toast.LENGTH_LONG);
-        toast.show();
-        Log.d(TAG, "onCreate");
+
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        Log.d(TAG, "onAttach");
-        Toast toast = Toast.makeText(getContext(), "onAttach", Toast.LENGTH_LONG);
-        toast.show();
+
     }
 
     private void buttonsBinding(Bundle bundle) {
@@ -86,18 +82,15 @@ public class ProductsFragment2 extends Fragment {
                              Bundle savedInstanceState) {
         fragmentProducts2Binding = fragmentProducts2Binding.inflate(inflater, container, false);
         buttonsBinding(new Bundle());
-        Log.d(TAG, "onCreateView");
-        Toast toast = Toast.makeText(getContext(), "onCreateView", Toast.LENGTH_LONG);
-        toast.show();
+
+
         return fragmentProducts2Binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.d(TAG, "onViewCreated");
-        Toast toast = Toast.makeText(getContext(), "onViewCreated", Toast.LENGTH_LONG);
-        toast.show();
+
         Bundle bundle = getArguments();
         if (bundle != null) {
             String recieveInfo = bundle.getString("name");
@@ -109,7 +102,7 @@ public class ProductsFragment2 extends Fragment {
         recyclerView.setAdapter(adapter_recycle);
         for(int i = 0; i < 200; i++){
 
-            this.items.add(new Item("Букет " + i));
+            this.items.add(new Item("Букет " + (i+1)));
             adapter_recycle.notifyItemInserted(this.items.size() - 1);
         }
 
@@ -140,6 +133,13 @@ public class ProductsFragment2 extends Fragment {
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int index) {
             TextView name = holder.itemView.findViewById(R.id.text_view_item);
             name.setText(String.format("%s",  this.items.get(index).getName()));
+            holder.itemView.setOnClickListener (new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast toast = Toast.makeText(v.getContext(), "нажали на " + (index+1), Toast.LENGTH_LONG );
+                    toast.show();
+                }
+            });
         }
 
         @Override

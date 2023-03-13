@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -52,12 +53,21 @@ public class ProductsFragment1 extends Fragment {
             }
         });
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         fragmentProducts1Binding = fragmentProducts1Binding.inflate(inflater, container, false);
         buttonsBinding(new Bundle());
+        fragmentProducts1Binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                Toast toast = Toast.makeText(getContext(), "нажали на " + (position+1), Toast.LENGTH_LONG );
+                toast.show();
+          }
+      });
+
         return fragmentProducts1Binding.getRoot();
     }
     @Override
@@ -67,7 +77,7 @@ public class ProductsFragment1 extends Fragment {
         listView = fragmentProducts1Binding.listView;
         String[]  names = new String[200];
         for(int i = 0; i < 200; i++){
-            String byket = "Букет " + i;
+            String byket = "Букет " + (i+1);
             names[i] = byket;
 
         }
