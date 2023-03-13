@@ -136,6 +136,7 @@ public class ProductsFragment2 extends Fragment {
             holder.itemView.setOnClickListener (new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.i(TAG, "Нажали во втором каталоге");
                     Toast toast = Toast.makeText(v.getContext(), "нажали на " + (index+1), Toast.LENGTH_LONG );
                     toast.show();
                 }
