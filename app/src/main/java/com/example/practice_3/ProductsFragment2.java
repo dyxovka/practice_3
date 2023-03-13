@@ -7,19 +7,28 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.practice_3.databinding.FragmentProducts1Binding;
+import com.example.practice_3.databinding.FragmentProducts2Binding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductsFragment2 extends Fragment {
     private static String TAG = "tag";
-    FragmentProducts1Binding fragmentProducts1Binding;
+    RecyclerView recyclerView;
+    FragmentProducts2Binding fragmentProducts2Binding;
+    private final List<Item> items = new ArrayList<>();
+    private final RecyclerView.Adapter adapter_recycle = new ItemAdapter(this.items);
 
 
     public ProductsFragment2() {
@@ -50,7 +59,7 @@ public class ProductsFragment2 extends Fragment {
     }
 
     private void buttonsBinding(Bundle bundle) {
-        fragmentProducts1Binding.buttonGotovo1.setOnClickListener(new View.OnClickListener() {
+        fragmentProducts2Binding.buttonGotovo1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LoginFragment loginFragment = new LoginFragment();
@@ -75,12 +84,12 @@ public class ProductsFragment2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        fragmentProducts1Binding = fragmentProducts1Binding.inflate(inflater, container, false);
+        fragmentProducts2Binding = fragmentProducts2Binding.inflate(inflater, container, false);
         buttonsBinding(new Bundle());
         Log.d(TAG, "onCreateView");
         Toast toast = Toast.makeText(getContext(), "onCreateView", Toast.LENGTH_LONG);
         toast.show();
-        return fragmentProducts1Binding.getRoot();
+        return fragmentProducts2Binding.getRoot();
     }
 
     @Override
@@ -95,5 +104,48 @@ public class ProductsFragment2 extends Fragment {
             TextView editText = view.findViewById(R.id.textView5_for_name);
             editText.setText(recieveInfo);
         }
+        recyclerView = fragmentProducts2Binding.recycler;
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapter_recycle);
+        for(int i = 0; i < 200; i++){
+
+            this.items.add(new Item("Букет " + i));
+            adapter_recycle.notifyItemInserted(this.items.size() - 1);
+        }
+
+
+
+    }
+
+
+    private static final class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+        private final List<Item> items;
+
+        public ItemAdapter(List<Item> items) {
+            this.items = items;
+        }
+
+        @NonNull
+        @Override
+        //загрузка нового слоя (айтема)
+        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int index) {
+            return new RecyclerView.ViewHolder(
+                    LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.item_recycle, parent, false)
+            ) {}; //анонимынй класс
+        }
+
+        @Override
+        //начинает заполнять наше вью
+        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int index) {
+            TextView name = holder.itemView.findViewById(R.id.text_view_item);
+            name.setText(String.format("%s",  this.items.get(index).getName()));
+        }
+
+        @Override
+        public int getItemCount() {
+            return this.items.size();
+        }
     }
 }
+
