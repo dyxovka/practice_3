@@ -65,6 +65,7 @@ public class ProductsFragment1 extends Fragment {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 Toast toast = Toast.makeText(getContext(), "нажали на " + (position+1), Toast.LENGTH_LONG );
                 toast.show();
+                Log.i(TAG, "Нажали в первом каталоге");
           }
       });
 
