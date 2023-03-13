@@ -79,19 +79,36 @@ tools:context=".LoginFragment">
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
     <Button
-        android:id="@+id/button_gotovo"
+        android:id="@+id/button_gotovo_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
+        android:layout_marginStart="79dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="150dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginBottom="281dp"
         android:backgroundTint="#66BF6A"
-        android:text="@string/done"
+        android:text="Первый"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_gotovo_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
+        app:layout_constraintVertical_bias="0.437" />
+
+    <Button
+        android:id="@+id/button_gotovo_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginBottom="281dp"
+        android:backgroundTint="#66BF6A"
+        android:text="Второй"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+        app:layout_constraintStart_toEndOf="@+id/button_gotovo_1"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
+        app:layout_constraintVertical_bias="0.437" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -117,6 +134,6 @@ tools:context=".LoginFragment">
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_gotovo" />
+        app:layout_constraintTop_toBottomOf="@+id/button_gotovo_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

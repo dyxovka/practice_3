@@ -1,12 +1,10 @@
 package com.example.practice_3;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
@@ -43,10 +41,10 @@ public class LoginFragment extends Fragment {
     }
 
     private void buttonsBinding(Bundle bundle) {
-        fragmentLoginBinding.buttonGotovo.setOnClickListener(new View.OnClickListener() {
+        fragmentLoginBinding.buttonGotovo1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ProductsFragment productsFragment1 = new ProductsFragment();
+                ProductsFragment1 productsFragment1 = new ProductsFragment1();
                 String name = fragmentLoginBinding.editTextTextPersonName.getText().toString();
                 String phone = fragmentLoginBinding.editTextPhone.getText().toString();
                 Bundle bundle = new Bundle();
@@ -55,6 +53,20 @@ public class LoginFragment extends Fragment {
                 productsFragment1.setArguments(bundle);
                 FragmentTransaction fragm = getFragmentManager().beginTransaction();
                 fragm.replace(R.id.fragment_container,  productsFragment1).commit();
+            }
+        });
+        fragmentLoginBinding.buttonGotovo2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProductsFragment2 productsFragment2 = new ProductsFragment2();
+                String name = fragmentLoginBinding.editTextTextPersonName.getText().toString();
+                String phone = fragmentLoginBinding.editTextPhone.getText().toString();
+                Bundle bundle = new Bundle();
+                bundle.putString("name", name);
+                bundle.putString("phone", phone);
+                productsFragment2.setArguments(bundle);
+                FragmentTransaction fragm = getFragmentManager().beginTransaction();
+                fragm.replace(R.id.fragment_container,  productsFragment2).commit();
             }
         });
 

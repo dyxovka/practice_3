@@ -15,19 +15,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.practice_3.databinding.FragmentLoginBinding;
-import com.example.practice_3.databinding.FragmentProductsBinding;
+import com.example.practice_3.databinding.FragmentProducts1Binding;
 
-public class ProductsFragment extends Fragment {
+public class ProductsFragment1 extends Fragment {
     private static String TAG = "tag";
-    FragmentProductsBinding fragmentProductsBinding;
+    FragmentProducts1Binding fragmentProducts1Binding;
 
-    public ProductsFragment() {
+
+    public ProductsFragment1() {
         // Required empty public constructor
     }
 
-    public static ProductsFragment newInstance(String param1, String param2) {
-        ProductsFragment fragment = new ProductsFragment();
+    public static ProductsFragment1 newInstance(String param1, String param2) {
+        ProductsFragment1 fragment = new ProductsFragment1();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -50,7 +50,7 @@ public class ProductsFragment extends Fragment {
     }
 
     private void buttonsBinding(Bundle bundle) {
-        fragmentProductsBinding.buttonGotovo1.setOnClickListener(new View.OnClickListener() {
+        fragmentProducts1Binding.buttonGotovo1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LoginFragment loginFragment = new LoginFragment();
@@ -75,12 +75,12 @@ public class ProductsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        fragmentProductsBinding = fragmentProductsBinding.inflate(inflater, container, false);
+        fragmentProducts1Binding = fragmentProducts1Binding.inflate(inflater, container, false);
         buttonsBinding(new Bundle());
         Log.d(TAG, "onCreateView");
         Toast toast = Toast.makeText(getContext(), "onCreateView", Toast.LENGTH_LONG);
         toast.show();
-        return fragmentProductsBinding.getRoot();
+        return fragmentProducts1Binding.getRoot();
     }
 
     @Override
@@ -97,63 +97,3 @@ public class ProductsFragment extends Fragment {
         }
     }
 }
-
-/*
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        Log.d(TAG, "onViewStateRestored");
-        Toast toast = Toast.makeText(getContext(), "onViewStateRestored", Toast.LENGTH_LONG );
-        toast.show();
-    }
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart");
-        Toast toast = Toast.makeText(getContext(), "onStart", Toast.LENGTH_LONG );
-        toast.show();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume");
-        Toast toast = Toast.makeText(getContext(), "onResume", Toast.LENGTH_LONG );
-        toast.show();
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause");
-        Toast toast = Toast.makeText(getContext(), "onPause", Toast.LENGTH_LONG );
-        toast.show();
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop");
-        Toast toast = Toast.makeText(getContext(), "onStop", Toast.LENGTH_LONG );
-        toast.show();
-    }
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.d(TAG, "onSaveInstanceState");
-        Toast toast = Toast.makeText(getContext(), "onSaveInstanceState", Toast.LENGTH_LONG );
-        toast.show();
-    }
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d(TAG, "onDestroyView");
-        Toast toast = Toast.makeText(getContext(), "onDestroyView", Toast.LENGTH_LONG );
-        toast.show();
-    }
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy");
-        Toast toast = Toast.makeText(getContext(), "onDestroy", Toast.LENGTH_LONG );
-        toast.show();
-    }
-}*/
