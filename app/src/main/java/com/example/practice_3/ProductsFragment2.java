@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -70,9 +71,8 @@ public class ProductsFragment2 extends Fragment {
                 Bundle bundle1 = new Bundle();
                 bundle1.putString("name", name);
                 bundle1.putString("phone", phone);
-                loginFragment.setArguments(bundle1);
-                FragmentTransaction fragm = getFragmentManager().beginTransaction();
-                fragm.replace(R.id.fragment_container, loginFragment).commit();
+
+                Navigation.findNavController(view).navigate(R.id.action_productsFragment2_to_loginFragment, bundle);
             }
         });
     }
@@ -92,18 +92,14 @@ public class ProductsFragment2 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Bundle bundle = getArguments();
-        if (bundle != null) {
-            String recieveInfo = bundle.getString("name");
-            TextView editText = view.findViewById(R.id.textView5_for_name);
-            editText.setText(recieveInfo);
-        }
+
         recyclerView = fragmentProducts2Binding.recycler;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter_recycle);
         for(int i = 0; i < 200; i++){
 
             this.items.add(new Item("Букет " + (i+1)));
-            adapter_recycle.notifyItemInserted(this.items.size() - 1);
+            adapter_recycle.notifyItemInserted(this.items.size());
         }
 
 
@@ -113,11 +109,9 @@ public class ProductsFragment2 extends Fragment {
 
     private static final class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private final List<Item> items;
-
         public ItemAdapter(List<Item> items) {
             this.items = items;
         }
-
         @NonNull
         @Override
         //загрузка нового слоя (айтема)
@@ -127,22 +121,19 @@ public class ProductsFragment2 extends Fragment {
                             .inflate(R.layout.item_recycle, parent, false)
             ) {}; //анонимынй класс
         }
-
         @Override
-        //начинает заполнять наше вью
+        //начинает заполнять вью
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int index) {
             TextView name = holder.itemView.findViewById(R.id.text_view_item);
-            name.setText(String.format("%s",  this.items.get(index).getName()));
+            name.setText(this.items.get(index).getName());
             holder.itemView.setOnClickListener (new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.i(TAG, "Нажали во втором каталоге");
                     Toast toast = Toast.makeText(v.getContext(), "нажали на " + (index+1), Toast.LENGTH_LONG );
                     toast.show();
-                }
-            });
+                }});
         }
-
         @Override
         public int getItemCount() {
             return this.items.size();

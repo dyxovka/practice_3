@@ -1,15 +1,24 @@
 package com.example.practice_3;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.practice_3.databinding.FragmentLoginBinding;
@@ -17,6 +26,8 @@ import com.example.practice_3.databinding.FragmentLoginBinding;
 
 public class LoginFragment extends Fragment {
     public FragmentLoginBinding fragmentLoginBinding;
+    private EditText name_user;
+    private EditText phone_user;
     public LoginFragment() {
 
     }
@@ -29,6 +40,8 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,9 +63,9 @@ public class LoginFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("name", name);
                 bundle.putString("phone", phone);
-                productsFragment1.setArguments(bundle);
-                FragmentTransaction fragm = getFragmentManager().beginTransaction();
-                fragm.replace(R.id.fragment_container,  productsFragment1).commit();
+                /*productsFragment1.setArguments(bundle);*/
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_productsFragment1, bundle);
+
             }
         });
         fragmentLoginBinding.buttonGotovo2.setOnClickListener(new View.OnClickListener() {
@@ -64,9 +77,10 @@ public class LoginFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("name", name);
                 bundle.putString("phone", phone);
-                productsFragment2.setArguments(bundle);
-                FragmentTransaction fragm = getFragmentManager().beginTransaction();
-                fragm.replace(R.id.fragment_container,  productsFragment2).commit();
+                /*productsFragment1.setArguments(bundle);*/
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_productsFragment2, bundle);
+
+
             }
         });
 

@@ -6,8 +6,6 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@color/color_background">
-
-
     <TextView
         android:id="@+id/text_view_item"
         android:layout_width="158dp"

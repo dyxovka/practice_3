@@ -19,7 +19,6 @@ public class Adapter_ListView extends ArrayAdapter<String> {
         this.context = context;
         this.names = names;
     }
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -29,6 +28,5 @@ public class Adapter_ListView extends ArrayAdapter<String> {
         name.setText(this.names[position]);
 
         return view;
-
     }
 }

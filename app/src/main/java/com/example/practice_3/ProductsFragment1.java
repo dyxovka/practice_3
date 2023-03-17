@@ -1,12 +1,14 @@
 package com.example.practice_3;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,8 +24,10 @@ import com.example.practice_3.databinding.FragmentProducts1Binding;
 
 public class ProductsFragment1 extends Fragment {
     private static String TAG = "tag";
+
     ListView listView;
     FragmentProducts1Binding fragmentProducts1Binding;
+
     public ProductsFragment1() {
         // Required empty public constructor
     }
@@ -36,28 +40,30 @@ public class ProductsFragment1 extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
     }
-
     private void buttonsBinding(Bundle bundle) {
         fragmentProducts1Binding.buttonGotovo1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LoginFragment loginFragment = new LoginFragment();
 
-                FragmentTransaction fragm = getFragmentManager().beginTransaction();
-                fragm.replace(R.id.fragment_container, loginFragment).commit();
+
+                Navigation.findNavController(view).navigate(R.id.action_productsFragment1_to_loginFragment, bundle);
+
+                /*FragmentTransaction fragm = getFragmentManager().beginTransaction();
+                fragm.replace(R.id.fragment_container, loginFragment).commit();*/
             }
         });
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         fragmentProducts1Binding = fragmentProducts1Binding.inflate(inflater, container, false);
         buttonsBinding(new Bundle());
         fragmentProducts1Binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -74,13 +80,18 @@ public class ProductsFragment1 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String recieveInfo = bundle.getString("name");
+            TextView editText = view.findViewById(R.id.textView5_for_name);
+            editText.setText(recieveInfo);
+        }
 
         listView = fragmentProducts1Binding.listView;
         String[]  names = new String[200];
         for(int i = 0; i < 200; i++){
             String byket = "Букет " + (i+1);
             names[i] = byket;
-
         }
         Adapter_ListView adapter_listView = new Adapter_ListView(getContext(), names);
         listView.setAdapter(adapter_listView);
