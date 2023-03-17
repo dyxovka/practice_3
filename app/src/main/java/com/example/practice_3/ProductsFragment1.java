@@ -24,10 +24,8 @@ import com.example.practice_3.databinding.FragmentProducts1Binding;
 
 public class ProductsFragment1 extends Fragment {
     private static String TAG = "tag";
-
     ListView listView;
     FragmentProducts1Binding fragmentProducts1Binding;
-
     public ProductsFragment1() {
         // Required empty public constructor
     }
@@ -40,8 +38,6 @@ public class ProductsFragment1 extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
     @Override
     public void onAttach(@NonNull Context context) {
@@ -51,14 +47,9 @@ public class ProductsFragment1 extends Fragment {
         fragmentProducts1Binding.buttonGotovo1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginFragment loginFragment = new LoginFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("done", "Был переход на первый каталог");
-
+                bundle.putString("done", "Был переход в первый каталог");
                 Navigation.findNavController(view).navigate(R.id.action_productsFragment1_to_loginFragment, bundle);
-
-                /*FragmentTransaction fragm = getFragmentManager().beginTransaction();
-                fragm.replace(R.id.fragment_container, loginFragment).commit();*/
             }
         });
     }
@@ -87,7 +78,6 @@ public class ProductsFragment1 extends Fragment {
             TextView editText = view.findViewById(R.id.textView5_for_name);
             editText.setText(recieveInfo);
         }
-
         listView = fragmentProducts1Binding.listView;
         String[]  names = new String[200];
         for(int i = 0; i < 200; i++){
