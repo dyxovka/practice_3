@@ -52,7 +52,8 @@ public class ProductsFragment1 extends Fragment {
             @Override
             public void onClick(View view) {
                 LoginFragment loginFragment = new LoginFragment();
-
+                Bundle bundle = new Bundle();
+                bundle.putString("done", "Был переход на первый каталог");
 
                 Navigation.findNavController(view).navigate(R.id.action_productsFragment1_to_loginFragment, bundle);
 

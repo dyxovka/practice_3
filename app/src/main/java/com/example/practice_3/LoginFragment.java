@@ -90,12 +90,10 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Bundle bundle = getArguments();
         if (bundle != null) {
-            String name = bundle.getString("name");
-            TextView editText1 = view.findViewById(R.id.editTextTextPersonName);
-            editText1.setText(name);
-            String phone = bundle.getString("phone");
-            TextView editText2 = view.findViewById(R.id.editTextPhone);
-            editText2.setText(phone);
+            String done = bundle.getString("done");
+            TextView editText1 = view.findViewById(R.id.textView_done);
+            editText1.setText(done);
+
 
         }
 
