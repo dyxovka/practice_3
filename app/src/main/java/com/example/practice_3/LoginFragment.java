@@ -3,6 +3,7 @@ package com.example.practice_3;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -26,16 +27,17 @@ import com.example.practice_3.databinding.FragmentLoginBinding;
 
 public class LoginFragment extends Fragment {
     public FragmentLoginBinding fragmentLoginBinding;
+    private MainActivity mainActivity;
     private static final String CHANNEL_ID = "channel";
     private static final int NOTIFICATION_ID = 2;
-    public LoginFragment() {
 
+    public LoginFragment() {
+        super(R.layout.fragment_login);
     }
-    public static LoginFragment newInstance(String param1, String param2) {
-        LoginFragment fragment = new LoginFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mainActivity = (MainActivity) context;
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,6 @@ public class LoginFragment extends Fragment {
         fragmentLoginBinding = FragmentLoginBinding.inflate(inflater, container, false);
         buttonsBinding(new Bundle());
         return fragmentLoginBinding.getRoot();
-
     }
 
     private void buttonsBinding(Bundle bundle) {
@@ -63,24 +64,25 @@ public class LoginFragment extends Fragment {
                 bundle.putString("phone", phone);
                 productsFragment1.setArguments(bundle);
                 FragmentTransaction fragm = getFragmentManager().beginTransaction();
-                fragm.replace(R.id.fragment_container,  productsFragment1).commit();
+                fragm.replace(R.id.fragment_container, productsFragment1).commit();
             }
         });
+    }
+        private void initIt() {
+            fragmentLoginBinding.buttonService.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mainActivity, ServiceCustom.class);
+                    mainActivity.startService(intent);
+                }
+            });
 
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            String name = bundle.getString("name");
-            TextView editText1 = view.findViewById(R.id.editTextTextPersonName);
-            editText1.setText(name);
-            String phone = bundle.getString("phone");
-            TextView editText2 = view.findViewById(R.id.editTextPhone);
-            editText2.setText(phone);
+        initIt();
 
-        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "канал";
             String description = "канал для уведомлений об акциях и скидках";
