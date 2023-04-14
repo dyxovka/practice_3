@@ -1,4 +1,4 @@
-package com.example.practice_3;
+package com.example.practice_3.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,10 +14,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.practice_3.adapter.ItemAdapter;
+import com.example.practice_3.model.Item;
+import com.example.practice_3.R;
 import com.example.practice_3.databinding.FragmentProducts2Binding;
 
 import java.util.ArrayList;
@@ -87,37 +88,6 @@ public class ProductsFragment2 extends Fragment {
     }
 
 
-    private static final class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-        private final List<Item> items;
-        public ItemAdapter(List<Item> items) {
-            this.items = items;
-        }
-        @NonNull
-        @Override
-        //загрузка нового слоя (айтема)
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int index) {
-            return new RecyclerView.ViewHolder(
-                    LayoutInflater.from(parent.getContext())
-                            .inflate(R.layout.item_recycle, parent, false)
-            ) {}; //анонимынй класс
-        }
-        @Override
-        //начинает заполнять вью
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int index) {
-            TextView name = holder.itemView.findViewById(R.id.text_view_item);
-            name.setText(this.items.get(index).getName());
-            holder.itemView.setOnClickListener (new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.i(TAG, "Нажали во втором каталоге");
-                    Toast toast = Toast.makeText(v.getContext(), "нажали на " + (index+1), Toast.LENGTH_LONG );
-                    toast.show();
-                }});
-        }
-        @Override
-        public int getItemCount() {
-            return this.items.size();
-        }
-    }
+
 }
 

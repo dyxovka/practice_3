@@ -1,4 +1,4 @@
-package com.example.practice_3;
+package com.example.practice_3.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.example.practice_3.R;
 
 public class Adapter_ListView extends ArrayAdapter<String> {
 

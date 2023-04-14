@@ -1,4 +1,4 @@
-package com.example.practice_3;
+package com.example.practice_3.model;
 
 import java.util.Objects;
 

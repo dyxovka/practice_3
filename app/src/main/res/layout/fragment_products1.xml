@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="@color/color_background"
-tools:context=".ProductsFragment1">
+tools:context=".ui.ProductsFragment1">
 
     <ImageView
         android:id="@+id/flower_high_right"
