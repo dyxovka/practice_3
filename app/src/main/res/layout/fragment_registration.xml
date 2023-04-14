@@ -6,15 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_background"
-    tools:context=".ui.LoginFragment">
+    tools:context=".ui.RegistrationFragment">
+    <ImageView
+        android:id="@+id/flower_high_right"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/flower_high_right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewLoginTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:text="@string/login"
-        android:textColor="#263238"
+        android:text="Вход"
+        android:textColor="@color/black"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -31,13 +38,13 @@
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/enter_you_password"
-        android:inputType="textPassword"
         android:minHeight="48dp"
-        android:textColorHint="#000000"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/editTextPersonEmail"
@@ -48,10 +55,10 @@
         android:layout_marginEnd="101dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/enter_you_email"
+        android:hint="введите имя"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:textColorHint="#000000"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,34 +66,15 @@
         tools:ignore="TextFields" />
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginTop="88dp"
         android:backgroundTint="#66BF6A"
-        android:text="@string/login"
+        android:text="@string/register"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPersonPassword"
-        tools:ignore="DuplicateSpeakableTextCheck" />
-    <ImageView
-        android:id="@+id/flower_high_right"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/flower_high_right"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/registerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="137dp"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="#66BF6A"
-        android:text="Регистрация"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

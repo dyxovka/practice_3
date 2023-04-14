@@ -1,12 +1,24 @@
 <resources>
-    <string name="app_name">practice_3</string>
+    <string name="app_name">APP</string>
+    <string name="settings_button">Settings</string>
+    <string name="preview_text">Preview Text</string>
+    <string name="enter_name">введите имя</string>
+    <string name="todo">TODO</string>
+    <string name="enter_interesting_film">Enter interesting flower</string>
+    <string name="hello_client">Hello, </string>
+    <string name="back_button">Back</string>
+    <string name="settings_title">настройки</string>
+    <string name="apply_button">готово</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="enter_your_data">Введите свои данные</string>
-    <string name="phone">Телефон</string>
-    <string name="done">готово</string>
-    <string name="name">Имя</string>
-    <string name="price_of_first">Цена: 6000p</string>
-    <string name="price_of_second">Цена: 5500p</string>
-    <string name="add">Добавить</string>
+    <string name="login_button">вход</string>
+    <string name="login">вход</string>
+    <string name="enter_you_email">введите почту</string>
+    <string name="enter_you_password">введите пароль</string>
+    <string name="name">Название</string>
+    <string name="filminfo">информация</string>
+    <string name="get_service_button">Get service!</string>
+    <string name="desc_poster">Poster of flower</string>
+    <string name="register">Register</string>
+    <string name="registration">Registration</string>
 </resources>
