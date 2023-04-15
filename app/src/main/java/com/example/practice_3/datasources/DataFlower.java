@@ -2,6 +2,7 @@ package com.example.practice_3.datasources;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 
 import com.example.practice_3.R;
@@ -10,7 +11,7 @@ import com.example.practice_3.model.Flower;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataFlower {
+public class DataFlower{
 
     public static LiveData<List<Flower>> createRandomList() {
         MutableLiveData<List<Flower>> result = new MutableLiveData<>();

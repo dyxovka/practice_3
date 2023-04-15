@@ -9,15 +9,15 @@ import com.example.practice_3.repository.FlowerRepository;
 
 import java.util.List;
 
-public class FilmListViewModel extends ViewModel {
-    public LiveData<List<Flower>> films;
+public class FlowerVM extends ViewModel {
+    public LiveData<List<Flower>> flower;
 
     public void init(){
         FlowerRepository flowerRepository = new FlowerRepository();
-        films = flowerRepository.getRandomData();
+        flower = flowerRepository.getRandomData();
     }
 
-    public FilmListViewModel() {
+    public FlowerVM() {
         init();
     }
 }

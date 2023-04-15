@@ -1,9 +1,7 @@
 package com.example.practice_3.ui;
 
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +15,7 @@ import androidx.navigation.Navigation;
 import com.example.practice_3.CustomAdapter;
 import com.example.practice_3.R;
 import com.example.practice_3.databinding.FragmentCatalogBinding;
-import com.example.practice_3.viewmodels.FilmListViewModel;
+import com.example.practice_3.viewmodels.FlowerVM;
 
 
 public class CatalogFragment extends Fragment {
@@ -25,7 +23,7 @@ public class CatalogFragment extends Fragment {
     private FragmentCatalogBinding binding;
     private String name_user;
 
-    private FilmListViewModel listViewModel;
+    private FlowerVM listViewModel;
 
     private CustomAdapter adapter;
 
@@ -37,7 +35,7 @@ public class CatalogFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        listViewModel = new ViewModelProvider(this).get(FilmListViewModel.class);
+        listViewModel = new ViewModelProvider(this).get(FlowerVM.class);
     }
 
     @Override
@@ -67,15 +65,9 @@ public class CatalogFragment extends Fragment {
         }
 
         binding.recyclerView.setAdapter(adapter);
-        listViewModel.films.observe(getViewLifecycleOwner(), filmArrayList ->
-                adapter.updateFilmList(filmArrayList));
-
-
+        listViewModel.flower.observe(getViewLifecycleOwner(), filmArrayList -> adapter.updateFilmList(filmArrayList));
         binding.textView.setText("Хай " + name_user);
-
-        binding.buttonLogin.setOnClickListener(v -> {
-                    Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_loginFragment);
-                }
+        binding.buttonLogin.setOnClickListener(v -> {Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_loginFragment);}
         );
 
     }

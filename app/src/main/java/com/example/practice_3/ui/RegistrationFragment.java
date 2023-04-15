@@ -32,8 +32,7 @@ public class RegistrationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.registerButton.setOnClickListener(v ->
-                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registrationFragment));
+
     }
 
     @Override

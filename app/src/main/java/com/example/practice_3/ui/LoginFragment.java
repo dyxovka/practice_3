@@ -36,8 +36,7 @@ public class LoginFragment extends Fragment {
         binding.loginButton.setOnClickListener(v ->
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_mainFragment2));
 
-        binding.registerButton.setOnClickListener(v ->
-                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registrationFragment));
+
     }
 
     @Override
