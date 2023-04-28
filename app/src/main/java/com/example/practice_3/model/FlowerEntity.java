@@ -17,6 +17,10 @@ public class FlowerEntity {
         this.name = name;
         this.picture = pic;
     }
+    public FlowerEntity(@NonNull String name) {
+        this.name = name;
+
+    }
     public FlowerEntity() {
     }
     public int getId() {

@@ -47,7 +47,7 @@ public abstract class FlowerRoomDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 FlowerDao dao = INSTANCE.flowerDao();
                 for (int i = 0; i < 200; i++) {
-                    FlowerEntity flower = new FlowerEntity("Flower1" + i, pictures.get(i % 2));
+                    FlowerEntity flower = new FlowerEntity("Flower1" + i, pictures.get(i % 3));
                     dao.insert(flower);
                 }
             });
@@ -57,6 +57,7 @@ public abstract class FlowerRoomDatabase extends RoomDatabase {
         ArrayList<Integer> posterPics = new ArrayList<>();
         posterPics.add(R.drawable.flower_catalog_1);
         posterPics.add(R.drawable.flower_catalog_2);
+        posterPics.add(R.drawable.flower_catalog_1);
         return posterPics;
     }
 }

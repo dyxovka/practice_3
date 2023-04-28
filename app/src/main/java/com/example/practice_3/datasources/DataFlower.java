@@ -28,7 +28,8 @@ public class DataFlower{
         ArrayList<Integer> flowers_pictures = new ArrayList<>();
         flowers_pictures.add(R.drawable.flower_catalog_2);
         flowers_pictures.add(R.drawable.flower_catalog_1);
-        flowers_pictures.add(R.drawable.flower_1);
+        flowers_pictures.add(R.drawable.flower_catalog_1);
+
         return flowers_pictures;
     }
 

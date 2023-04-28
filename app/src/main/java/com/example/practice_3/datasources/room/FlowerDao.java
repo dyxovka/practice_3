@@ -14,11 +14,11 @@ import java.util.List;
 @Dao
 public interface FlowerDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(FlowerEntity film);
+    void insert(FlowerEntity flower);
 
     @Query("DELETE FROM flower_table")
     void deleteAll();
 
     @Query("SELECT * FROM flower_table ORDER BY id")
-    LiveData<List<FlowerEntity>> getAllFilms();
+    LiveData<List<FlowerEntity>> getAllFlowers();
 }

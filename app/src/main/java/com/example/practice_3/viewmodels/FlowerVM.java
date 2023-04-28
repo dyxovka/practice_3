@@ -14,7 +14,7 @@ public class FlowerVM extends ViewModel {
 
     public void init(){
         FlowerRepository flowerRepository = new FlowerRepository();
-        flower = flowerRepository.getRandomData();
+        /*flower = flowerRepository.getRandomData();*/
     }
 
     public FlowerVM() {
