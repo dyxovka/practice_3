@@ -1,6 +1,7 @@
 package com.example.practice_3.ui;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,9 @@ import androidx.navigation.Navigation;
 import com.example.practice_3.R;
 import com.example.practice_3.databinding.FragmentLoginBinding;
 import com.example.practice_3.viewmodels.LoginViewModel;
+
+import java.util.Map;
+import java.util.Set;
 
 
 public class LoginFragment extends Fragment {
@@ -37,6 +41,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         binding.loginButton.setOnClickListener(v ->
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_mainFragment2));
         binding.loginButton.setOnClickListener(v -> {
@@ -48,9 +53,8 @@ public class LoginFragment extends Fragment {
                     binding.editTextPersonEmail.getText() + " " +
                             binding.editTextPersonPassword.getText());
 
-            loginViewModel.createFileSharedPreferences(requireContext(), "",
-                    binding.editTextPersonEmail.getText() + " " +
-                            binding.editTextPersonPassword.getText());
+            loginViewModel.createFileSharedPref(requireContext(), "noth",binding.editTextPersonEmail.getText().toString());
+
         });
 
 

@@ -54,10 +54,10 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    public void createFileSharedPreferences(Context context, String fileName, String fileContent) {
+    public void createFileSharedPref(Context context, String fileName, String fileContent) {
         SharedPreferences settings = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString( "loginInfo", fileContent);
+        editor.putString( "nothing", fileContent);
         editor.apply();
         Toast.makeText(context, "Файл создан " + settings + fileName, Toast.LENGTH_SHORT).show();
         System.out.println("fiiiiile");
