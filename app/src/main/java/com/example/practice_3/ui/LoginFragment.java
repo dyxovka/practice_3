@@ -48,7 +48,7 @@ public class LoginFragment extends Fragment {
                     binding.editTextPersonEmail.getText() + " " +
                             binding.editTextPersonPassword.getText());
 
-            loginViewModel.createFileSharedPreferences(requireContext(), "loginDataFile",
+            loginViewModel.createFileSharedPreferences(requireContext(), "",
                     binding.editTextPersonEmail.getText() + " " +
                             binding.editTextPersonPassword.getText());
         });
