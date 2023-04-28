@@ -9,15 +9,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.practice_3.R;
 import com.example.practice_3.databinding.FragmentLoginBinding;
+import com.example.practice_3.viewmodels.LoginViewModel;
 
 
 public class LoginFragment extends Fragment {
 
     private FragmentLoginBinding binding;
+    private LoginViewModel loginViewModel;
 
     public LoginFragment() {
         super(R.layout.fragment_login);
@@ -27,6 +30,7 @@ public class LoginFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         return binding.getRoot();
     }
 
@@ -35,6 +39,20 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         binding.loginButton.setOnClickListener(v ->
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_mainFragment2));
+        binding.loginButton.setOnClickListener(v -> {
+            loginViewModel.createFileAppSpecific(requireContext(), "",
+                    binding.editTextPersonEmail.getText() + " " +
+                            binding.editTextPersonPassword.getText());
+
+            loginViewModel.createFileExtWithToast(requireActivity(), "loginDataFile",
+                    binding.editTextPersonEmail.getText() + " " +
+                            binding.editTextPersonPassword.getText());
+
+            loginViewModel.createFileSharedPreferences(requireContext(), "loginDataFile",
+                    binding.editTextPersonEmail.getText() + " " +
+                            binding.editTextPersonPassword.getText());
+        });
+
 
 
     }
