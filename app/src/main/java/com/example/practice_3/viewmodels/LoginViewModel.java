@@ -41,7 +41,7 @@ public class LoginViewModel extends ViewModel {
             try {
                 outputStream = new FileOutputStream(file);
                 outputStream.write(fileContent.getBytes());
-                Toast.makeText(context, "Файл в " + filePath+ "/" + fileName + ".txt", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Файл в " + filePath+ "/" + fileName + ".tx t", Toast.LENGTH_SHORT).show();
                 System.out.println("fiiiiile");
                 outputStream.close();
             } catch (IOException e) {
