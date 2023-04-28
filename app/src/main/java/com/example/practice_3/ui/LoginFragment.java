@@ -44,7 +44,7 @@ public class LoginFragment extends Fragment {
                     binding.editTextPersonEmail.getText() + " " +
                             binding.editTextPersonPassword.getText());
 
-            loginViewModel.createFileExtWithToast(requireActivity(), "loginDataFile",
+            loginViewModel.createFileExtWithToast(requireActivity(), "",
                     binding.editTextPersonEmail.getText() + " " +
                             binding.editTextPersonPassword.getText());
 
