@@ -1,5 +1,6 @@
 package com.example.practice_3.repository;
 
+import android.app.Activity;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
@@ -24,12 +25,26 @@ public class FlowerRepository {
         FlowerRoomDatabase db = FlowerRoomDatabase.getDatabase(context);
         flowerDao = db.flowerDao();
     }
+    DataFlower dataFlower = new DataFlower();
+    public DataFlower getter(){
+        return dataFlower;
+    }
 
     public FlowerRepository() {
         roomDatabase = FlowerApp.instance.getRoomDatabase();
         flowerDao = FlowerApp.instance.getRoomDatabase().flowerDao();
         all_flowers = flowerDao.getAllFlowers();
     }
+    public  void setAddress(Context context, String filename, String fileContent){
+        dataFlower.createFileAppSpecific(context, filename, fileContent);
+    }
+    public  void setAddress_1(Activity activity, String filename, String fileContent){
+        dataFlower.createFileExtWithToast(activity, filename, fileContent);
+    }
+    public  void setAddress_2(Context context, String filename, String fileContent){
+        dataFlower.createFileAppSpecific(context, filename, fileContent);
+    }
+
     public LiveData<List<FlowerEntity>> getAllFlowers() {
         return all_flowers;
     }

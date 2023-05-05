@@ -10,10 +10,12 @@ import android.widget.TextView;
 import com.example.practice_3.FlowerApp;
 import com.example.practice_3.R;
 import com.example.practice_3.databinding.FragmentAddFlowerBinding;
+import com.example.practice_3.datasources.DataFlower;
 import com.example.practice_3.datasources.room.FlowerDao;
 import com.example.practice_3.datasources.room.FlowerRoomDatabase;
 import com.example.practice_3.model.FlowerEntity;
 import com.example.practice_3.repository.FlowerRepository;
+import com.example.practice_3.viewmodels.FlowerVM;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,6 +65,15 @@ public class AddFlower extends Fragment {
                 TextView textView = view.findViewById(R.id.textView3);
                 String name = textView.getText().toString();
                 flowerRepository.flowerDao.insert(new FlowerEntity(name));
+
+                FlowerVM flowerVM = new FlowerVM();
+
+
+                flowerVM.setAddress(getContext(), "user_file", name);
+
+                flowerVM.setAddress_1(requireActivity(), "file_name", name);
+
+                flowerVM.setAddress_2(getContext(), "file_name", name);
 
             }
         });
