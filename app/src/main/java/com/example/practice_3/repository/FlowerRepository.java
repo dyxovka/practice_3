@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
 
 
 import com.example.practice_3.FlowerApp;
@@ -14,16 +15,17 @@ import com.example.practice_3.model.Flower;
 import com.example.practice_3.model.FlowerEntity;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FlowerRepository {
     public FlowerDao flowerDao;
 
-    private LiveData<List<FlowerEntity>> all_flowers;
+    private LiveData<List<Flower>> all_flowers;
+    FlowerRoomDatabase db;
 
     FlowerRoomDatabase roomDatabase;
     public FlowerRepository(Context context) {
-        FlowerRoomDatabase db = FlowerRoomDatabase.getDatabase(context);
-        flowerDao = db.flowerDao();
+        db = FlowerRoomDatabase.getDatabase(context);
     }
     DataFlower dataFlower = new DataFlower();
     public DataFlower getter(){
@@ -32,9 +34,16 @@ public class FlowerRepository {
 
     public FlowerRepository() {
         roomDatabase = FlowerApp.instance.getRoomDatabase();
-        flowerDao = FlowerApp.instance.getRoomDatabase().flowerDao();
-        all_flowers = flowerDao.getAllFlowers();
+        all_flowers = Transformations.map(
+                db.flowerDao().getAllFlowers(),
+                (values) -> values.stream().map(FlowerEntity::toDomainModel).collect(Collectors.toList())
+        );
     }
+
+    public LiveData<List<Flower>> getAllFlowers() {
+        return all_flowers;
+    }
+
     public  void setAddress(Context context, String filename, String fileContent){
         dataFlower.createFileAppSpecific(context, filename, fileContent);
     }
@@ -42,11 +51,9 @@ public class FlowerRepository {
         dataFlower.createFileExtWithToast(activity, filename, fileContent);
     }
     public  void setAddress_2(Context context, String filename, String fileContent){
-        dataFlower.createFileAppSpecific(context, filename, fileContent);
+        dataFlower.createFileSharedPref(context, filename, fileContent);
     }
 
-    public LiveData<List<FlowerEntity>> getAllFlowers() {
-        return all_flowers;
-    }
+
     public LiveData<List<Flower>> getRandomData(){return DataFlower.createRandomList();}
 }

@@ -12,15 +12,16 @@ public class FlowerEntity {
     private int id;
     @ColumnInfo(name = "flower_name")
     private String name;
-    private int picture;
+    private int pic;
     public FlowerEntity(@NonNull String name, int pic) {
         this.name = name;
-        this.picture = pic;
+        this.pic = pic;
     }
     public FlowerEntity(@NonNull String name) {
         this.name = name;
 
     }
+
     public FlowerEntity() {
     }
     public int getId() {
@@ -30,19 +31,23 @@ public class FlowerEntity {
         this.id = id;
     }
     public int getPicture() {
-        return picture;
+        return pic;
     }
     public void setPicture(int picture) {
-        this.picture = picture;
+        this.pic = picture;
     }
     @NonNull
     public String getName() {
         return this.name;
     }
+
+    public Flower toDomainModel() {
+        return new Flower(name, pic);
+    }
     public void setName(@NonNull String name) {
         this.name = name;
     }
     public int getPictureResource() {
-        return this.picture;
+        return this.pic;
     }
 }
